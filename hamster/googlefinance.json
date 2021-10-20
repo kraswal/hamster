@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "poetic-torch-294815",
+  "private_key_id": "a6e345d765b31ade979224d570f457a7c2535df3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8ejGSguMqvz+Q\nUhvb+YiF9D2uF8d7VVuWANXZItddP2A3gn89Vrw+9KfRflBjvYftawjBiY2HQdFI\nbA4GmVi3RPJ2Iqk4aXS78c5hVgktaJuVovCTHTW2Cjsw9h24H5oSqTIaqbr2bHxH\nu+V7xOmenBuydltUe3zbbbTQc+I0xhNHegnheD1LAgcWLYczZOA1xb71gDsymgj0\nSPMdCl1SxSwygV31zrhjSujBxn7s8PSqT186aeMM9s/xf8TI+sINuDDT8SZZci4C\n1ixKzvFscKlNuiKcenIr03/iMckCS72CYZG3hwyA51aYmqdLhfXG90OYt1hPPGnF\nMvFhfBvFAgMBAAECggEAPHOEytUoP2Gv5X4waVGTtEMuNVRzKt+pzGbgMBC4urPF\nDIjSfr3/CsI1wT+eUR9NJZ0a5dhUiHlXwr7FkOBGUCHREorzc6B/THi2FQofT20p\n2ci1GLpZq9WEPqPxzEh2hl22ME8YJEmPYwKlDBmQRMsVJxxHFsW0ujxpriI8/2er\nQR+7qLUVPzf4jn53Bpx1By+mtVxoeIFkQET6/P7aG3yDeQYb2entRx2xjC+tnkPU\n5rE9SSGEiul7w3rcGiOrsPXiXYeQSAg7+46Pn2PtahyDZ+HBISiNYmjbefE+5PL2\nO0BDTHFhZrjwF3+LZuQJE7hyEsJ0K+XIhVfJYkXOUQKBgQDpx+NQVzolrw5+VTIN\ntUgodHypSknNoleJz2KQmAePxe3umA8agcAn/O7MeR26Ar3jV39+sS2CybPhLCLv\n/dfdxdUrwsKgKAp7CCVfZU0hte6y4m25pi7v+1JZeq4cos7wOhh2PiONMVGpcTAc\nmdR3kV2HTtm29OS6zqX65HG66wKBgQDOZAczB/fej0U7m29Audf8Dvp7w6E9IRF6\nycl09WyGyWk0eYtK6BNZGFSAtloF4K6rSE/m1xkJckvELo5hRuBfbQmcVf5GFpry\nmrCqColNw4o5ybHruk5BHkHxap+TvrQnFjlwR37m1IA1EJ8q/LjZdN0J2nJro8gd\nHpdOWJx4DwKBgHbt1Vo9xbr9/2WNedU3b+oEuJZ20GzoNZhKBF6CuPYPPyet+6EE\nePje16z1wIWsd2V8UcPl5r0uV3Apv+xPOs37oqKMhe5r8Ej+r+SD6GVJ5JDkV+Wm\nASLcu9wBaSnwOU5Ef8VHf1aIzH5ispMaPthE/0uidWd51hKiphWouaLZAoGABJQ3\njKxKlYd8M7xZFYiKAC+c4w4OD7siFiVP8OZZCAyD5wQjUQAhHcLqbQieqq63cVlj\nXG29QnZks++MfSADblqO8gb+YzOxMFy6OquNLEqAUJPm/KHfhpZTRDXnYHHEsXFO\nyOztJdXlGkhKH7wHpdtv4/4St8ykbfD1zmks34UCgYEA30o8CdfzkA2snX+Afgrf\n9I44he37CaEGItTkvIko1GD2H0r7/0AcI7ZChgxXftRE3YpLM99NJt2quJOgi3dk\nvm91De3Um+rx4lkq5Sqf8I3nCWeabGAF1nIiosWRF/CS1HpgwtIkmkTFMwJxThfX\n8Wsbec0or+2YeaxOGJncddU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "googlefinance@poetic-torch-294815.iam.gserviceaccount.com",
+  "client_id": "115971133255161326409",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/googlefinance%40poetic-torch-294815.iam.gserviceaccount.com"
+}

@@ -1,0 +1,42 @@
+﻿@model SignUpViewModel
+@{
+    Layout = "";
+    ViewData["Title"] = "Регистрация";
+}
+<!-- Meta tag Keywords -->
+<meta name="keywords"
+      content="Report Login Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!-- //Meta tag Keywords -->
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!--/Style-CSS -->
+<link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
+<!--//Style-CSS -->
+<section class="w3l-hotair-form">
+    <h1>Регистрация</h1>
+    <div class="container">
+        <!-- /form -->
+        <div class="workinghny-form-grid">
+            <div class="main-hotair">
+                <div class="content-wthree">
+                    <h2>Ввод данных</h2>
+                    <form asp-controller="User" asp-action="SignUp" method="post">
+                        <input type="text" asp-for="UserName" placeholder="Электронная почта" required="" autofocus>
+                        <input type="text" asp-for="Nickname" placeholder="Имя пользователя" required="" autofocus>
+                        <input type="text" asp-for="Password" placeholder="Пароль" required="" autofocus>
+                        <div asp-validation-summary="ModelOnly" class="text-center" style="color: red; margin: 20px;"></div>
+                        <button class="btn" type="submit">Зарегистрироваться</button>
+                    </form>
+
+                    <p class="account">Уже есть аккаунт? <a asp-controller="User" asp-action="Login">Войти</a></p>
+                </div>
+                <div class="w3l_form align-self">
+                    <div class="left_grid_info">
+                        <img src="~/images/1.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //form -->
+    </div>
+</section>
+<!-- //form section start -->

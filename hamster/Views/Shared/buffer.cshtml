@@ -1,0 +1,10 @@
+﻿document.getElementById("foo").onchange = function () {
+            if (this.selectedIndex !== 0) {
+                if (this.value !== "Добавить портфель") {
+
+                }
+                if (this.value == "Добавить портфель") {
+                    showInPopup('@Url.Action("Create", "Setting", null, Context.Request.Scheme)', 'Добавить портфель')
+                    }
+                    }
+                    };

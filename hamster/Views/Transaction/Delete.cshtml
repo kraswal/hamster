@@ -1,0 +1,36 @@
+﻿@model Transaction
+@{
+    ViewData["Title"] = "Удаление операции";
+    Layout = null;
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h1>Удалeние операции</h1>
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        <form asp-action="Delete" method="post">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Вы уверены, что хотите удалить операцию?</label>
+                        <input asp-for="TransactionId" hidden />
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="submit" value="Да" class="btn btn-danger btn-block" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <a asp-controller="Transaction" asp-action="Index" class="btn btn-dark btn-block">Отмена</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

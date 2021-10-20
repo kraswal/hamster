@@ -1,0 +1,42 @@
+﻿@model Portfolio
+@{
+    ViewData["Title"] = "Настройки портфеля";
+}
+
+<h1>Обновить операцию</h1>
+<form asp-action="Update" method="post">
+    <input asp-for="PortfolioId" hidden />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group row">
+        <div class="col-3">
+            <label asp-for="PortfolioName"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="Commission"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="Cost"></label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-3">
+            <input asp-for="PortfolioName" class="form-control" autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="Commission" class="form-control" value="@(Model.Commission * 100)" autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="Cost" class="form-control"  autofocus />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12 row">
+            <div class="col">
+                <input type="submit" value="Обновить данные" class="btn btn-info w-75" />
+            </div>
+            <div class="col text-right">
+                <a asp-controller="Setting" asp-action="Portfolios" class="btn btn-dark w-25">Назад</a>
+            </div>
+        </div>
+    </div>
+</form>

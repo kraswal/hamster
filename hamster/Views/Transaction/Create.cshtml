@@ -1,0 +1,54 @@
+﻿@model Transaction
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group row">
+        <div class="col-3">
+            <label asp-for="AssetName"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="TransactionAmount"></label>
+            <span asp-validation-for="TransactionAmount" class="text-danger"></span>
+        </div>
+        <div class="col-3">
+            <label asp-for="TransactionPrice"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="TransactionComission"></label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-3">
+            <input asp-for="AssetName" class="form-control" required autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="TransactionAmount" class="form-control" required autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="TransactionPrice" class="form-control" required autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="TransactionComission" class="form-control" required autofocus />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12 row">
+            <div class="col">
+                <input type="submit" value="Добавить актив" class="btn btn-info w-75" />
+            </div>
+            <div class="col text-right">
+                <a asp-controller="Transaction" asp-action="Index" class="btn btn-dark w-25">Back</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+}
+}

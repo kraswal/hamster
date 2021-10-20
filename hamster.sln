@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hamster", "hamster\hamster.csproj", "{595DBD54-BD93-41E3-975E-D1D92344779F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hamsterModel", "..\hamsterModel\hamsterModel.csproj", "{EA08342F-099C-418A-AD94-22D0E7EE1EC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{595DBD54-BD93-41E3-975E-D1D92344779F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595DBD54-BD93-41E3-975E-D1D92344779F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595DBD54-BD93-41E3-975E-D1D92344779F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595DBD54-BD93-41E3-975E-D1D92344779F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA08342F-099C-418A-AD94-22D0E7EE1EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA08342F-099C-418A-AD94-22D0E7EE1EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA08342F-099C-418A-AD94-22D0E7EE1EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA08342F-099C-418A-AD94-22D0E7EE1EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7069E0D-E8B8-47BD-9365-C59C6ACB9DD0}
+	EndGlobalSection
+EndGlobal

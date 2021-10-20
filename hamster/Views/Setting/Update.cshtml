@@ -1,0 +1,68 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Настройки";
+    Layout = "_appLayout";
+}
+
+<div class="container-fluid c3">
+    <div class="col-12">
+        <h3 style="margin-top: 20px;">Настройки</h3>
+
+        <form asp-action="Update"  method="post">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Название портфеля</label>
+                        <span asp-validation-for="Portfolio.PortfolioName"></span>
+                        <div class="input-group">
+                            <input asp-for="Portfolio.PortfolioName" class="form-control" placeholder="@Model.Portfolio.PortfolioName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Комиссия</label>
+                        <span asp-validation-for="Portfolio.Commission"></span>
+                        <div class="input-group">
+                            <input asp-for="Portfolio.Commission" class="form-control" value="@((Model.Portfolio.Commission * 100).ToString())" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Стоимость обслуживания</label>
+                        <span asp-validation-for="Portfolio.Cost"></span>
+                        <div class="input-group">
+                            <input asp-for="Portfolio.Cost" class="form-control" placeholder="@Model.Portfolio.Cost" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="Portfolio.PortfolioId" />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-3">
+                <input type="submit" value="Сохранить изменения" class="btn btn-success w-100" />
+            </div>
+
+            <div class="form-group col-3">
+                <button onclick="showInPopup('@Url.Action("Delete", "Portfolio", null, Context.Request.Scheme)', 'Удалить портфель')" class="btn btn-danger w-100">Удалить портфель</button>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>

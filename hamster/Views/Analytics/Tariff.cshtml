@@ -1,0 +1,104 @@
+﻿@model AnalyticsViewModel
+@{
+    ViewData["Title"] = "Подбор тарифа";
+    Layout = null;
+}
+
+@if (Model.Tariff != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Tariff" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group font-weight-bold">
+                            <h6>Брокер</h6>
+                            <label>@Model.Tariff.BrokerName</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group font-weight-bold">
+                            <h6>Экономия</h6>
+                            <label>@((Model.PortfolioCosts - Model.SuitablePayment).ToString("### ### ###.##")) ₽</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group font-weight-bold">
+                            <h6>Тариф</h6>
+                            <label>@Model.Tariff.TariffName</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h6>Затраты</h6>
+                            <label>@Model.SuitablePayment.ToString("### ### ###.##") ₽</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h6>Стоимость обслуживания</h6>
+                            <label>@Model.TariffCost ₽</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <h6>Комиссии по операциям</h6>
+                            <label>@Model.SuitableCommissionVolume.ToString("### ### ###.##") ₽</label>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div style="color: gray;">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <h6>Затраты сейчас</h6>
+                                <label>@Model.PortfolioCosts.ToString("### ### ###.##") ₽</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <h6>Стоимость обслуживания</h6>
+                                <label>@Model.PortfolioTariffCost.ToString("### ### ###.##") ₽</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <h6>Объем торгов</h6>
+                                <label>@Model.TradeVolume.ToString("### ### ###.##") ₽</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <h6>Комиссии по операциям</h6>
+                                <label>@Model.CommissionVolume.ToString("### ### ###.##") ₽</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            </form>
+        </div>
+    </div>
+}
+else
+{
+<div class="row">
+    <div class="col-12">
+        <div class="form-group font-weight-bold">
+            <label>Добавьте операции в портфель</label>
+        </div>
+    </div>
+
+</div>
+}

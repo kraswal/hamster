@@ -1,0 +1,118 @@
+﻿@model MainViewModel 
+
+<div class="col-12">
+    @if (Model.ShareAccounts.Count() > 0)
+    {
+        <h5>Акции</h5>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th class="text-left">
+                        Название
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Средняя
+                    </th>
+                    <th>
+                        Курс
+                    </th>
+                    <th>
+                        Дельта
+                    </th>
+                    <th>
+                        Стоимость
+                    </th>
+                    <th>
+                        Прибыль
+                    </th>
+                    <th>
+                        Доля
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var shareAccount in Model.ShareAccounts.OrderBy(s => s.ShareName))
+                {
+                    <tr class="text-center" style="border-bottom: 2px solid lightgray;">
+                        <td width="20%" class="text-left sharename">@shareAccount.ShareName</td>
+                        <td width="10%" class="text-center">@(shareAccount.Amount + " шт."  )</td>
+                        <td width="10%" class="text-center">@(shareAccount.AveragePrice + " " + shareAccount.CurrencySign)</td>
+                        @foreach (var share in Model.Shares)
+                        {
+                            @if (shareAccount.ShareTicker == share.Ticker)
+                            {
+                                <td width="10%" class="text-center">@(share.Price + " " + shareAccount.CurrencySign)</td>
+                                <td width="10%" class="text-center">@(Math.Round(share.Price/shareAccount.AveragePrice * 100, 2) - 100 + "  %")</td>
+                                <td width="10%" class="text-center">@((share.Price * shareAccount.Amount).ToString("### ### ### ### ### ###.##") + " " + shareAccount.CurrencySign)</td>
+                                <td width="10%" class="text-center">@((share.Price * shareAccount.Amount - shareAccount.AveragePrice * shareAccount.Amount).ToString("### ### ### ### ### ###.##") + " " + shareAccount.CurrencySign)</td>
+                                @foreach (var currency in Model.CurrencyPairs)
+                                {
+                                    if (currency.BuyCurrency == shareAccount.CurrencyTicker && currency.PayCurrency == "RUB")
+                                    {
+                                        <td width="10%" class="text-center">@(Math.Round((shareAccount.Amount*share.Price*currency.Rate)/Model.ShareValue * 100, 1) + " %")</td>
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>
+
+<div class="col-12">
+    @if (Model.CurrencyAccounts.Count() > 0)
+    {
+
+
+    <h5>Валюта</h5>
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th width="20%">
+                    Название валюты
+                </th>
+                <th width="20%">
+                    Баланс
+                </th>
+                <th width="20%">
+                    Курс
+                </th>
+                <th width="20%">
+                    Стоимость в ₽
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currencyAccount in Model.CurrencyAccounts)
+            {
+                <tr class="text-center" onclick="showInPopup('@Url.Action("Withdraw", "Portfolio", new {id=currencyAccount.CurrencyAccountId}, Context.Request.Scheme)', 'Вывести со счета')" style="border-bottom: 2px solid lightgray;">
+                    <td class="text-center">@currencyAccount.CurrencyName</td>
+                    <td class="text-center">@(Math.Round(currencyAccount.Amount, 2).ToString("### ### ### ### ###.##") + " " + currencyAccount.CurrencySign)</td>
+                    @foreach (var currencyPair in Model.CurrencyPairs)
+                    {
+                        if (currencyAccount.CurrencyTicker == currencyPair.BuyCurrency && currencyPair.PayCurrency == "RUB")
+                        {
+                            <td class="text-center">@(currencyPair.Rate.ToString("### ###.##")) ₽</td>
+                            <td class="text-center">@((currencyAccount.Amount * currencyPair.Rate).ToString("### ### ###.##")) ₽</td>
+                        }
+                    }
+                    @if (currencyAccount.CurrencyTicker == "RUB")
+                    {
+                            <td class="text-center">-</td>
+                            <td class="text-center">@(Math.Round(currencyAccount.Amount, 2).ToString("### ### ### ### ###.##") + " " + currencyAccount.CurrencySign)</td>
+                    }
+                    @*<td class="text-center">
+                        <a onclick="showInPopup('@Url.Action("Withdraw", "Portfolio", new {id=currencyAccount.CurrencyAccountId}, Context.Request.Scheme)', 'Вывести со счета')" class="btn btn-dark text-white ">Вывести</a>
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+</div>

@@ -1,0 +1,142 @@
+﻿@model AnalyticsViewModel
+@{
+    ViewData["Title"] = "Аналитика";
+}
+
+<div class="container">
+    <h1>Аналитика брокерского счета: @Model.PortfolioName</h1>
+</div>
+<div>
+    @if (Model.TradeVolume > 0)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Аналитика по операциям за последние 30 дней.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>Стоимость портфеля @(Model.PortfolioValue.ToString("### ### ### ###.##")) ₽</p>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <p>Объем торгов: @(Model.TradeVolume.ToString("### ### ### ###.##")) ₽</p>
+                    <p>Затраты на комиссию сейчас: @(Model.CommissionVolume.ToString("### ### ### ###.##")) ₽</p>
+                    <p>Обслуживание тарифа сейчас: @(Model.TariffCost) ₽</p>
+                    <p>Затраты на комиссию и обслуживание сейчас: @(Model.PortfolioCosts.ToString("### ### ### ###.##")) ₽</p> 
+                </div>
+                <div class="col-6">
+                    @if (Model.PortfolioCommission < 1)
+                    {
+                        <p>Процент комиссии: @((Model.PortfolioCommission * 100).ToString("0.####"))%</p>
+                    }
+                    else
+                    {
+                        <p>Процент комиссии: @((Model.PortfolioCommission * 100).ToString("###.####"))%</p>
+                    }
+                </div>
+            </div>
+            <hr />
+            <div style="border-width: 1px; background-color: antiquewhite">
+                <div class="row">
+                    <div class="col-12">
+                        <p>Подходящий тарифф @Model.Tariff.TariffName</p>
+                        <p>Брокер @Model.Tariff.BrokerName</p>
+                        <p>Комиссия за операцию: @(Model.Tariff.Commission * 100) %</p>
+                        <p>Оплата за 30 дней: @Model.Tariff.Cost ₽</p>
+
+                        <hr />
+
+                        <p>Затраты на комиссии с данным тарифом @(Model.SuitableCommissionVolume.ToString("### ###.##")) ₽</p>
+                        <p>Общие затраты с данным тарифом @(Model.SuitablePayment.ToString("### ###.##")) ₽ (+ @Model.TariffCost ₽ обслуживание)</p>
+                        <br />
+                        @if (Model.Condition != null)
+                        {
+                            <p>Примечание: @Model.Condition</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <h4>За последние 30 дней не было совершено ни одной операции.</h4>
+        </div>
+    }
+</div>
+
+
+@*@model AnalyticsViewModel
+    @{
+        ViewData["Title"] = "Аналитика";
+    }
+
+    <div class="container">
+        <h1>Аналитика брокерского счета: @Model.PortfolioName</h1>
+    </div>
+    <div>
+        @if (Model.TradeVolume > 0)
+        {
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Аналитика по операциям за последние 30 дней.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>Стоимость портфеля @(Model.PortfolioValue.ToString("### ### ### ###.##")) ₽</p>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <p>Объем торгов: @(Model.TradeVolume.ToString("### ### ### ###.##")) ₽</p>
+                    <p>Затраты на комиссию сейчас: @(Model.CommissionFee.ToString("### ### ### ###.##")) ₽</p>
+                </div>
+                <div class="col-6">
+                    @if (Model.AverageCommission < 1)
+                    {
+                        <p>Процент комиссии: @((Model.AverageCommission * 100).ToString("0.####"))%</p>
+                    }
+                    else
+                    {
+                        <p>Процент комиссии: @((Model.AverageCommission * 100).ToString("###.####"))%</p>
+                    }
+                </div>
+            </div>
+            <hr />
+            <div style="border-width: 1px; background-color: antiquewhite">
+                <div class="row">
+                    <div class="col-12">
+                        <p>Подходящий тарифф @Model.Tariff.TariffName</p>
+                        <p>Брокер @Model.Tariff.BrokerName</p>
+                        <p>Комиссия за операцию: @(Model.Tariff.Commission * 100) %</p>
+                        <p>Оплата за 30 дней: @Model.Tariff.Cost ₽</p>
+                        <p>Затраты на комиссии с этим тарифом: @(Model.SuitableCommission.ToString("### ###.##")) ₽</p>
+                        <p>Затраты с этим тарифом: @(Model.SuitableCommission.ToString("### ###.##")) ₽ на комиссию и @Model.Tariff.Cost ₽ на оплату обслуживания</p>
+                        <p>Итого затраты @(Model.SuitablePayment.ToString("### ###.##")) ₽.</p>
+                        <p>С данным тарифом вы будете тратить на @(Model.OverPayment.ToString("### ###.##")) ₽ меньше на <span class="font-weight-bold">комиссии</span>, чем сейчас.</p>
+                        <p>Итоговая выгода с учетом платы за обслуживание по тарифу: @(Model.TotalBenefit.ToString("### ###.##")) ₽.</p>
+                        <br />
+                        @if (Model.Condition != null)
+                        {
+                            <p>Примечание: @Model.Condition</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+            <div class="container">
+                <h4>За последние 30 дней не было совершено ни одной операции.</h4>
+            </div>
+        }
+    </div>*@

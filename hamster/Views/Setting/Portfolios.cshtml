@@ -1,0 +1,55 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Настройки. Выбор портфеля";
+}
+
+<h1>Портфели</h1>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-12 text-right">
+            <a asp-controller="Setting" asp-action="Create" class="btn btn-primary">Создать портфель</a>
+        </div>
+    </div>
+    <br />
+    @if (Model.Portfolios.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Название портфеля
+                    </th>
+                    <th>
+                        Дата создания
+                    </th>
+                    <th>
+                        Комиссия
+                    </th>
+                    <th>
+                        Стоимость обслуживания
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var portfolio in Model.Portfolios)
+                {
+                    <tr class="text-center">
+                        <td width="20%">@portfolio.PortfolioName</td>
+                        <td width="20%">@portfolio.DateOfCreation.ToString("d")</td>
+                        <td width="20%">@(portfolio.Commission * 100 + "%")</td>
+                        <td width="20%">@(portfolio.Cost) ₽</td>
+                        <td>
+                            <div class="btn-group w-100" role="group">
+                                <a asp-controller="Setting" asp-action="Update" asp-route-id="@portfolio.PortfolioId" class="btn btn-primary mx-1">Изменить</a>
+                                <a asp-controller="Setting" asp-action="Delete" asp-route-id="@portfolio.PortfolioId" class="btn btn-primary mx-1">Изменить</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

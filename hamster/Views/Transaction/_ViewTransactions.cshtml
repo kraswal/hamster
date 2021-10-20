@@ -1,0 +1,100 @@
+﻿@model MainViewModel
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Дата
+                </th>
+                <th>
+                    Тип
+                </th>
+                <th>
+                    Наименование
+                </th>
+                <th>
+                    Количество
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th>
+                    Стоимость
+                </th>
+                <th>
+                    Комиссия
+                </th>
+                <th>
+                    Прибыль
+                </th>
+                <th>
+                    Изменения
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model.Transactions.Reverse())
+            {
+                @if (transaction.TransactionType == TransactionType.Пополнение || transaction.TransactionType == TransactionType.Вывод)
+                {
+                    <tr>
+                        <td width="10%">@transaction.TransactionDate.ToString("d")</td>
+                        <td width="10%">@transaction.TransactionType</td>
+                        <td width="20%">@transaction.AssetName</td>
+                        <td width="10%" colspan="5">@(transaction.TransactionAmount.ToString("### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                        <td width="20%">
+                            <div class="btn-group w-100" role="group">
+                                <a asp-controller="Transaction" asp-action="Update" asp-route-id="@transaction.TransactionId" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId" class="btn btn-danger mx-1 popup">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                @if (transaction.TransactionType == TransactionType.Покупка)
+                {
+                    <tr>
+                        <td width="10%">@(transaction.TransactionDate.ToString("d"))</td>
+                        <td width="10%">@transaction.TransactionType</td>
+                        <td width="20%">@transaction.AssetName</td>
+                        <td width="5%">@transaction.TransactionAmount.ToString("### ### ### ###.##")</td>
+                        <td width="10%">@(transaction.TransactionPrice + " " + transaction.CurrencySign)</td>
+                        <td width="15%">@(transaction.TransactionCost.ToString("### ### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                        <td width="10%">@(transaction.TransactionComission + " " + transaction.CurrencySign)</td>
+                        <td width="15%"></td>
+                        <td width="20%">
+                            <div class="btn-group w-100" role="group">
+                                <a asp-controller="Transaction" asp-action="Update" asp-route-id="@transaction.TransactionId" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId" class="btn btn-danger mx-1 popup">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                @if (transaction.TransactionType == TransactionType.Продажа)
+                {
+                    <tr>
+                        <td width="10%">@transaction.TransactionDate.ToString("d")</td>
+                        <td width="10%">@transaction.TransactionType</td>
+                        <td width="20%">@transaction.AssetName</td>
+                        <td width="5%">@transaction.TransactionAmount.ToString("### ### ### ###.##")</td>
+                        <td width="10%">@(transaction.TransactionPrice + " " + transaction.CurrencySign)</td>
+                        <td width="15%">@(transaction.TransactionCost.ToString("### ### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                        <td width="10%">@(transaction.TransactionComission + " " + transaction.CurrencySign)</td>
+                        @if (transaction.TradeResult == 0)
+                        {
+                            <td width="15%" id="cell">@(transaction.TradeResult + " " + transaction.CurrencySign)</td>
+                        }
+                        else
+                        {
+                            <td width="15%" id="cell">@(transaction.TradeResult.ToString("### ### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                        }
+                        <td width="20%">
+                            <div class="btn-group w-100" role="group">
+                                <a asp-controller="Transaction" asp-action="Update" asp-route-id="@transaction.TransactionId" class="btn btn-primary mx-1 ">Update</a>
+                                <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId" class="btn btn-danger mx-1 popup">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

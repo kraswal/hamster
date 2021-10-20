@@ -1,0 +1,47 @@
+﻿@model CurrencyAccountModel
+@{
+    ViewData["Title"] = "Вывод средств";
+    Layout = null;
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h1>Вывыд средств</h1>
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        <div class="col-12">
+            <form asp-action="Withdraw" method="post">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Валюта</label>
+                            <div class="input-group">
+                                <select asp-for="CurrencyAccount.CurrencyName" class="form-control" placeholder="Выберите валюту" required autofocus>
+                                    @foreach (var currency in Model.Currencies)
+                                    {
+                                        <option>@currency.CurrencyName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Количество</label>
+                            <div class="input-group">
+                                <input asp-for="CurrencyAccount.Amount" class="form-control" placeholder="Введите количество" required autofocus />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Вывести со счета" class="btn btn-primary btn-block" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

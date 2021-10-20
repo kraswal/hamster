@@ -1,0 +1,45 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Настройки";
+    Layout = "_appLayout";
+}
+
+<div class="container-fluid c3">
+    <div class="col-12">
+        <h3 style="margin-top: 20px;">Каталог</h3>
+
+        <form asp-action="Save">
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label>Название портфеля</label>
+                        <span asp-validation-for="Portfolio.PortfolioName"></span>
+                        <div class="input-group">
+                            <input asp-for="Portfolio.PortfolioName" class="form-control" placeholder="@Model.Portfolio.PortfolioName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label>Комиссия</label>
+                        <span asp-validation-for="Portfolio.Commission"></span>
+                        <div class="input-group">
+                            <input asp-for="Portfolio.Commission" class="form-control" placeholder="@Model.Portfolio.Commission" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Добавить сделку" class="btn btn-dark btn-block" />
+            </div>
+        </form> 
+
+        
+
+
+
+    </div>
+</div>

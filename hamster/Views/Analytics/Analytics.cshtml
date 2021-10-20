@@ -1,0 +1,15 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Подбор тарифа";
+    Layout = "_appLayout";
+}
+
+<div class="container-fluid c3">
+    <div class="col-12">
+        <h3 style="padding-top: 20px;">Аналитика</h3>
+
+        <a onclick="showInPopup('@Url.Action("Tariff", "Analytics", null, Context.Request.Scheme)', 'Подбор тарифа')" class="btn text-white button1 btn-block">Подобрать тариф</a>
+
+
+    </div>
+</div>

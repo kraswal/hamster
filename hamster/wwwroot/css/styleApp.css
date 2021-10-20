@@ -1,0 +1,290 @@
+@font-face {
+    font-family: "Gilroy-SemiBold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/Gilroy-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "Gilroy-Medium";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/Gilroy-Medium.ttf");
+}
+
+.html{
+    height: 100%;
+}
+
+.noppading {
+    padding: 0;
+    margin: 0;
+}
+
+.c1 {
+    background: rgba(242, 242, 242, 1);
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 100%;
+    color: black;
+    font-family: Gilroy-Semibold;
+}
+
+    .c1 h3 {
+        font-size: 20px;
+    }
+
+    .c1 h4 {
+        font-size: 20px;
+        font-weight: lighter;
+        font-family: Gilroy-Medium;
+        padding: 5px;
+    }
+
+
+    .c1 hr {
+        margin-bottom: 20px;
+    }
+
+    .c1 a {
+        text-decoration: none;
+        color: black;
+    }
+
+.c2 {
+    background: rgba(115, 115, 115, 1);
+    text-align: left;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    height: 190px;
+    color: white;
+}
+
+    .c2 h4 {
+        margin-left: 20px;
+        font-size: 18px;
+        font-family: Gilroy-Medium;
+    }
+
+    .c2 h3 {
+        margin-top: 20px;
+        margin-left: 20px;
+        font-size: 24px;
+        font-family: Gilroy-SemiBold;
+    }
+
+.c3 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+    .c3 h5 {
+        font-size: 24px;
+        font-family: Gilroy-Medium;
+        padding-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .c3 h3 {
+        font-size: 24px;
+        font-family: Gilroy-Medium;
+    }
+
+    .c3 thead {
+        background-color: #747474;
+        color: white;
+        font-family: Gilroy-Medium;
+        font-size: 16px;
+    }
+
+    .c3 tr {
+        font-family: Gilroy-Medium;
+        font-size: 18px;
+    }
+
+    .c3 td {
+        height: 70px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .c3 th{
+        font-weight: normal;
+        font-size: 16px;
+    }
+
+.sharename {
+    font-size: 16px;
+}
+
+.trname {
+    font-family: Gilroy-Medium;
+    font-size: 20px;
+    padding-bottom: 0 !important;
+}
+
+.trname2 {
+    font-family: Gilroy-Medium;
+    font-size: 20px;
+    color: gray;
+    border-top-width: 0px !important;
+    padding-top: 0px !important;
+}
+
+
+.button1 {
+    background: rgba(86, 86, 86, 1);
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-top: 10px;
+    margin-top: 50px;
+}
+
+
+.button11 {
+    background: rgba(86, 86, 86, 1);
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 15px;
+    padding-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+a:hover{
+    border: 0px;
+    background-color: lightgrey;
+}
+
+.button12 {
+    background: rgba(159, 159, 159, 1);
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 15px;
+    padding-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.button2 {
+    background: rgba(159, 159, 159, 1);
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding-top: 10px;
+}
+
+
+.search {
+    background-color: rgba(242, 242, 242, 1);
+    height: 60px;
+    font-family: Gilroy-Medium;
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+.logo {
+    margin-left: 20px;
+    color: rgb(235, 164, 59);
+    font-family: Gilroy-SemiBold;
+    font-size: 56px;
+    margin-bottom: 40px;
+}
+
+#logoimg {
+    height: 90px;
+    width: 90px;
+    margin-top: -5px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.c5 {
+    background-color: #3A3A3A;
+    color: white;
+}
+
+.a2 {
+    font-size: 24px;
+    font-family: Gilroy-Medium;
+    margin-top: 30px;
+}
+
+.a3 {
+    font-size: 18px;
+    font-family: Gilroy-Medium;
+    margin-top: 35px;
+    padding-top: 5px;
+}
+
+.close {
+    font-size: 32px;
+}
+
+#foo {
+    border: 0px;
+    outline: 0px;
+    /* needed for Firefox: */
+    background: rgba(242, 242, 242, 1);
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 0;
+    font-family: Gilroy-Medium;
+    font-size: 24px;
+    text-align-last: center;
+}
+#foo option:before{
+    content: "%"
+}
+
+/* modal setting*/
+
+.modal {
+    font-family: Gilroy-Medium;
+}
+.modal title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.modal label{
+    font-size: 18px;
+}
+
+    .modal input {
+        color: lightgray;
+    }
+
+.modal input::-webkit-input-placeholder{
+    color: lightgray;
+}
+
+    .modal select {
+        color: lightgray;
+    }
+
+
+
+.c3 label {
+    font-family: Gilroy-Medium;
+    font-size: 18px;
+}
+
+.c3 input {
+    font-family: Gilroy-Medium;
+    font-size: 16px;
+}
+
+    .c3 input::-webkit-input-placeholder {
+        color: lightgray;
+        font-family: Gilroy-Medium;
+        font-size: 16px;
+    }
+

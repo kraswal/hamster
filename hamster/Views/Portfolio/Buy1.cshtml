@@ -1,0 +1,81 @@
+﻿@model ShareAccountModel
+
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Buy" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div class="form-group">
+                <label asp-for="Transaction.AssetName"></label>
+                <span asp-validation-for="Transaction.AssetName" class="text-danger"></span>
+                <div class="input-group">
+                    <select asp-for="Transaction.AssetName" class="form-control" required="required" autofocus>
+                        <option label="Выберите актив" disabled selected></option>
+                        @foreach (var share in Model.Shares)
+                        {
+                            <option>@share.ShareName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Transaction.TransactionAmount"></label>
+                        <span asp-validation-for="Transaction.TransactionAmount" class="text-danger"></span>
+                        <div class="input-group">
+                            <input asp-for="Transaction.TransactionAmount" class="form-control" placeholder="Введите количество" min="1" required autofocus />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Transaction.TransactionPrice"></label>
+                        <span asp-validation-for="Transaction.TransactionPrice" class="text-danger"></span>
+                        <div class="input-group">
+                            <input asp-for="Transaction.TransactionPrice" class="form-control" placeholder="Введите цену" required autofocus />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Transaction.TransactionComission"></label>
+                        <span asp-validation-for="Transaction.TransactionComission" class="text-danger"></span>
+                        <div class="input-group">
+                            <input asp-for="Transaction.TransactionComission" class="form-control" placeholder="Введите комиссию" value="@(ViewBag.DefaultCommission * 100)" autofocus />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Transaction.TransactionDate"></label>
+                        <span asp-validation-for="Transaction.TransactionDate" class="text-danger"></span>
+                        <div class="input-group">
+                            <input asp-for="Transaction.TransactionDate" class="form-control" required autofocus />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group text-right col-12">
+                            <input asp-for="Transaction.Internal" type="checkbox" style="margin: 0px; padding: 0px;" class="form-control" value="true" autofocus /> Использовать средства в портфеле?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Добавить актив" class="btn btn-dark btn-block" />
+            </div>
+        </form>
+    </div>
+</div>

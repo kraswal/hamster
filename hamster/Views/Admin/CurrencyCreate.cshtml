@@ -1,0 +1,49 @@
+﻿@model Currency
+@{
+    ViewData["Title"] = "Добавление валюты";
+    Layout = "_adminLayout";
+}
+
+<h2>Добавить валюту</h2>
+<hr/>
+<form asp-action="Create" method="post">
+    <div class="form-group row">
+        <div class="col-3">
+            <label asp-for="CurrencyName"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="CurrencyTicker"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="CurrencySign"></label>
+        </div>
+        <div class="col-3">
+            <label asp-for="CurrencyCountry"></label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-3">
+            <input asp-for="CurrencyName" class="form-control" placeholder="Введие название валюты" required autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="CurrencyTicker" class="form-control" placeholder="Введите тикер валюты" required autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="CurrencySign" class="form-control" placeholder="Введите символ валюты" required autofocus />
+        </div>
+        <div class="col-3">
+            <input asp-for="CurrencyCountry" class="form-control" placeholder="Введите страну валюты" required autofocus />
+        </div>
+    </div>
+<hr />
+    <div class="form-group row">
+        <div class="col-12 row">
+            <div class="col">
+                <input type="submit" value="Добавить" class="btn btn-info w-75" />
+            </div>
+            <div class="col text-right">
+                <a asp-controller="Admin" asp-action="Currency" class="btn btn-dark w-25">Назад</a>
+            </div>
+        </div>
+    </div>
+</form>

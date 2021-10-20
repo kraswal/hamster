@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Share>
+@{
+    ViewData["Title"] = "Каталог";
+    Layout = "_adminLayout";
+}
+
+<div class="container p-3">
+    <h1>Акции</h1>
+    <div class="col-12 text-right">
+        <a asp-controller="Admin" asp-action="CurrencyCreate" class="btn btn-primary">Добавить актив</a>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Тикер
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Рыночная капитализация
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var share in Model)
+                {
+                    <tr>
+                        <td width="40%">@share.ShareName</td>
+                        <td width="10%" class="text-center">@share.Ticker</td>
+                        <td width="20%" class="text-center">@(share.Price.ToString("### ###.##") + " " + share.CurrencySign)</td>
+                        <td width="30%" class="text-center">@(share.MarketCap.ToString("### ### ### ### ### ###.##")+ " " + share.CurrencySign)</td>
+                        <td>
+                            <div class="btn-group w-100" role="group">
+                                <a asp-controller="Share" asp-action="Buy" asp-route-id="@share.ShareId" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Share" asp-action="Withdraw" asp-route-id="@share.ShareId" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div> 

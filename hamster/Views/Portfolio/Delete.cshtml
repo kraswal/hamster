@@ -1,0 +1,19 @@
+﻿@model Portfolio
+@{
+    ViewData["Title"] = "Удалить портфель";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Delete" onsubmit="return jQueryAjaxDelete(this);" autocomplete="off">
+            <div class="form-group">
+                <label>Вы уверены, что хотите удалить портфель?</label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Удалить" class="btn btn-danger btn-block" />
+            </div>
+        </form>
+    </div>
+</div>

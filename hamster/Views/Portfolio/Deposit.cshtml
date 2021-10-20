@@ -1,0 +1,42 @@
+﻿@model CurrencyAccountModel
+@{
+    ViewData["Title"] = "Пополнение";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Deposit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div class="form-group">
+                <label asp-for="CurrencyAccount.CurrencyName"></label>
+                <span asp-validation-for="CurrencyAccount.CurrencyName" class="text-danger"></span>
+                <div class="input-group">
+                    <select asp-for="CurrencyAccount.CurrencyName" class="form-control custom-select" required="required" autofocus>
+                        <option label="Выберите валюту" disabled selected></option>
+                        @foreach (var currency in Model.Currencies)
+                        {
+                            <option>@currency.CurrencyName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CurrencyAccount.Amount"></label>
+                        <span asp-validation-for="CurrencyAccount.Amount" class="text-danger"></span>
+                        <div class="input-group">
+                            <input asp-for="CurrencyAccount.Amount" class="form-control" placeholder="Введите сумму" min=1 required autofocus />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="submit" value="Пополнить" class="btn btn-dark btn-block" />
+            </div>
+        </form>
+    </div>
+</div>

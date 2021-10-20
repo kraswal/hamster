@@ -1,0 +1,46 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Мои валюты";
+}
+
+<h1>Валюты</h1>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text">Список валют</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="CurrencyAccount" asp-action="Deposit" class="btn btn-primary popup">Пополнить счет</a>
+            <a asp-controller="CurrencyAccount" asp-action="Withdraw" class="btn btn-dark popup">Вывести со счета</a>
+        </div>
+    </div>
+    <br />
+    @if (Model.CurrencyAccountForViews.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Название валюты
+                    </th>
+                    <th>
+                        Баланс
+                    </th>
+                    <th>
+                        Стоимость в ₽
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var currencyAccount in Model.CurrencyAccountForViews)
+                {
+                    <tr class="text-center">
+                        <td width="30%">@currencyAccount.CurrencyName</td>
+                        <td width="30%">@(Math.Round(currencyAccount.Amount, 2).ToString("### ### ### ### ###.##") + " " + currencyAccount.CurrencySign)</td>
+                        <td width="30%">@(currencyAccount.Value.ToString("### ### ### ### ###.##")) ₽</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div> 

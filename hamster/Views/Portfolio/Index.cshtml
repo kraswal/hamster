@@ -1,0 +1,62 @@
+﻿@model MainViewModel
+@{
+    Layout = "_appLayout";
+}
+
+<!--2 колонка-->
+<div class="container-fluid c2">
+    <div class="row">
+        <div class="col-4">
+            <h4>Портфель</h4>
+            <h3>@Model.PortfolioName</h3>
+        </div>
+        <div class="col-3">
+            <h4>Стоимость</h4>
+            @if (Model.Value != 0)
+            {
+                <h3>@(Model.Value.ToString("### ### ###.##") + " ₽")</h3>
+            }
+            else
+            {
+                <h3>0 ₽</h3>
+            }
+        </div>
+        <div class="col-4">
+            @if (Model.Profit != 0)
+            {
+                <h4>Прибыль</h4>
+                <h3>@(Model.Profit.ToString("### ### ###.##") + " ₽") (@(Math.Round(Model.Profit/(Model.Value - Model.Profit) * 100, 2)) %)</h3>
+            }
+        </div>
+        @*<div class="col-2">
+            <h4>% акций в портфеле</h4>
+            <h3>-</h3>
+        </div>*@
+    </div>
+
+</div>
+
+
+<!--Наполнение. 3 блок-->
+@if (Model.Value != 0)
+{
+    <div class="container-fluid c3">
+        <div id="view-all">
+            @await Html.PartialAsync("_ViewAll", Model)
+        </div>
+    </div>
+}
+            else
+            {
+                <div class="container-fluid c3">
+                    <div class="col-12">
+                        <h5>Сделайте первую операцию в своем портфеле.</h5>
+                    </div>
+                </div>
+            }
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,209 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Портфель";
+}
+
+<h1>@Model.PortfolioName</h1>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            @if (Model.Value > 0)
+            {
+                <h4>Стоимость: @Model.Value.ToString("### ### ### ###.##") ₽</h4>
+                <h4>Прибыль: @(Model.Profit.ToString("### ### ### ###.##") + " ₽"  + " (" + Math.Round(Model.Profit/Model.Value * 100, 1) + "%)" )</h4>
+            }
+            else
+            {
+                <h4>Добавьте первую акцию в свой портфель.</h4>
+            }
+        </div>
+    </div>
+    <br />
+    @if (Model.ShareAccounts.Count() > 0)
+    {
+        <h2>Акции</h2>
+
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Средняя
+                    </th>
+                    <th>
+                        Курс
+                    </th>
+                    <th>
+                        Дельта
+                    </th>
+                    <th>
+                        Стоимость
+                    </th>
+                    <th>
+                        Прибыль
+                    </th>
+                    <th>
+                        Доля
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var shareAccount in Model.ShareAccounts.OrderBy(s => s.ShareName))
+                {
+                    <tr class="text-center">
+                        <td width="30%">@shareAccount.ShareName</td>
+                        <td width="10%" class="text-center">@(shareAccount.Amount + " шт."  )</td>
+                        <td width="10%" class="text-center">@(shareAccount.AveragePrice + " " + shareAccount.CurrencySign)</td>
+                        @foreach (var share in Model.Shares)
+                        {
+                            @if (shareAccount.ShareTicker == share.Ticker)
+                            {
+                                <td width="10%" class="text-center">@(share.Price + " " + shareAccount.CurrencySign)</td>
+                                <td width="10%" class="text-center">@(Math.Round(share.Price/shareAccount.AveragePrice * 100, 2) - 100 + "  %")</td>
+                                <td width="10%" class="text-center">@((share.Price * shareAccount.Amount).ToString("### ### ### ### ### ###.##") + " " + shareAccount.CurrencySign)</td>
+                                <td width="10%" class="text-center">@((share.Price * shareAccount.Amount - shareAccount.AveragePrice * shareAccount.Amount).ToString("### ### ### ### ### ###.##") + " " + shareAccount.CurrencySign)</td>
+                                @foreach (var currency in Model.CurrencyPairs)
+                                {
+                                    if (currency.BuyCurrency == shareAccount.CurrencyTicker && currency.PayCurrency == "RUB")
+                                    {
+                                        <td width="10%" class="text-center">@(Math.Round((shareAccount.Amount*share.Price*currency.Rate)/Model.ShareValue * 100, 1) + " %")</td>
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.CurrencyAccounts.Count() > 0)
+    {
+        <h2>Валюта</h2>
+
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Название валюты
+                    </th>
+                    <th>
+                        Баланс
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var currencyAccount in Model.CurrencyAccounts)
+                {
+                    <tr class="text-center">
+                        <td width="30%">@currencyAccount.CurrencyName</td>
+                        <td width="30%">@(Math.Round(currencyAccount.Amount, 2).ToString("### ### ### ### ###.##") + " " + currencyAccount.CurrencySign)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.Transactions.Count() > 0)
+    {
+        <h2>Операции</h2>
+
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        Дата
+                    </th>
+                    <th>
+                        Тип
+                    </th>
+                    <th>
+                        Наименование
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Стоимость
+                    </th>
+                    <th>
+                        Комиссия
+                    </th>
+                    <th>
+                        Прибыль
+                    </th>
+                    <th>
+                        Изменения
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in Model.Transactions.OrderByDescending(t => t.TransactionDate))
+                {
+                    @if (transaction.TransactionType == TransactionType.Пополнение || transaction.TransactionType == TransactionType.Вывод)
+                    {
+                        <tr>
+                            <td width="10%">@transaction.TransactionDate.ToString("g")</td>
+                            <td width="10%">@transaction.TransactionType</td>
+                            <td width="20%">@transaction.AssetName</td>
+                            <td width="10%" colspan="5" class="text-center">@(transaction.TransactionAmount.ToString("### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                            <td width="20%">
+                                <div class="btn-group w-100" role="group">
+                                    <a asp-controller="Transaction" asp-action="Update" asp-route-id="@transaction.TransactionId" class="btn btn-primary mx-1">Update</a>
+                                    <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId" class="btn btn-danger mx-1">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    @if (transaction.TransactionType == TransactionType.Покупка)
+                    {
+                        <tr>
+                            <td width="10%">@(transaction.TransactionDate.ToString("g"))</td>
+                            <td width="10%">@transaction.TransactionType</td>
+                            <td width="20%">@transaction.AssetName</td>
+                            <td width="5%">@transaction.TransactionAmount.ToString("### ### ### ###.##")</td>
+                            <td width="10%">@(transaction.TransactionPrice + " " + transaction.CurrencySign)</td>
+                            <td width="15%">@(transaction.TransactionCost.ToString("### ### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                            <td width="10%">@(transaction.TransactionComission + " " + transaction.CurrencySign)</td>
+                            <td width="15%"></td>
+                            <td width="20%">
+                                <div class="btn-group w-100" role="group">
+                                    <a asp-controller="Transaction" asp-action="Update" asp-route-id="@transaction.TransactionId" class="btn btn-primary mx-1">Update</a>
+                                    <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId" class="btn btn-danger mx-1">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    @if (transaction.TransactionType == TransactionType.Продажа)
+                    {
+                        <tr>
+                            <td width="10%">@transaction.TransactionDate.ToString("g")</td>
+                            <td width="10%">@transaction.TransactionType</td>
+                            <td width="20%">@transaction.AssetName</td>
+                            <td width="5%">@transaction.TransactionAmount.ToString("### ### ### ###.##")</td>
+                            <td width="10%">@(transaction.TransactionPrice + " " + transaction.CurrencySign)</td>
+                            <td width="15%">@(transaction.TransactionCost.ToString("### ### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                            <td width="10%">@(transaction.TransactionComission + " " + transaction.CurrencySign)</td>
+                            <td width="15%" id="cell">@(transaction.TradeResult.ToString("### ### ### ### ###.##") + " " + transaction.CurrencySign)</td>
+                            <td width="20%">
+                                <div class="btn-group w-100" role="group">
+                                    <a asp-controller="Transaction" asp-action="Update" asp-route-id="@transaction.TransactionId" class="btn btn-primary mx-1">Update</a>
+                                    <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId" class="btn btn-danger mx-1">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div> 

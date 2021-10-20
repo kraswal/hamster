@@ -1,0 +1,48 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Каталог";
+    Layout = "_appLayout";
+}
+
+<div class="container-fluid c3">
+    <div class="col-12">
+        <h3 style="padding-top: 20px;">Каталог</h3>
+        <input type="text" class="form-control search" placeholder="🔍 Поиск" />
+
+        <div class="row container-fluid">
+            <button class="btn btn-default button11 text-center">
+                <h3>Все</h3>
+            </button>
+            <button class="btn btn-default button12 text-center">
+                <h3>Акции</h3>
+            </button>
+            <button class="btn btn-default button12 text-center">
+                <h3>Валюты</h3>
+            </button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Название</th>
+                    <th style="width: 10%;">Тикер</th>
+                    <th style="width: 10%;">Цена</th>
+                    <th style="width: 10%;">Валюта</th>
+                    <th style="width: 20%;">Рыночная капитализация</th>
+                </tr>
+            </thead>
+            @foreach (var share in Model.Shares)
+            {
+                <tr>
+                    <td>@share.ShareName</td>
+                    <td>@share.Ticker</td>
+                    <td>@(share.Price + " $")</td>
+                    <td>@share.CurrencyTicker</td>
+                    <td>@((share.MarketCap/1000000000).ToString("n") + " млрд. $")</td>
+                </tr>
+            }
+        </table>
+
+
+    </div>
+</div>

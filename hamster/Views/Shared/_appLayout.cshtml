@@ -1,0 +1,132 @@
+﻿@model MainViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/styleApp.css">
+    @*<link rel="stylesheet" href="~/css/style.css" />*@
+</head>
+<body>
+    <div id="main">
+        <div class="row nopadding">
+            <!--1 колонка-->
+            <div class="container col-md-3 noppading">
+                <div class="container-fluid c1">
+                    <div class="container">
+                        <h1 class="logo"><a href="~/Portfolio">hamster</a></h1>
+                        <div class="col-12 text-center">
+                            <select id="foo" onchange="window.location.href = this.value;">
+                                @foreach (var portfolio in Model.Portfolios)
+                                {
+                                    if (portfolio.IsDefault == true)
+                                    {
+                                        <option disabled selected>
+                                            @portfolio.PortfolioName
+                                        </option>
+                                    }
+                                }
+                                @foreach (var portfolio in Model.Portfolios)
+                                {
+                                    if (portfolio.IsDefault != true)
+                                    {
+                                        <option value="/Portfolio/Change/@portfolio.PortfolioId">
+                                            @portfolio.PortfolioName
+                                        </option>
+                                    }
+                                }
+                                <option value="0">+ Добавить портфель</option>
+                            </select>
+
+                            <hr class="col-11" style="background-color: black; margin-top: 21px;">
+                            <hr class="col-11" style="background-color: black; margin-top: 8px; border: 2px;">
+                        </div>
+                        <div class="col-12 text-center">
+                            <a onclick="showInPopup('@Url.Action("BuyOrSell", "Portfolio", null, Context.Request.Scheme)', 'Добавить сделку')" class="btn text-white button1 btn-block">Добавить сделку</a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a onclick="showInPopup('@Url.Action("Deposit", "Portfolio", null, Context.Request.Scheme)', 'Пополнить счет')" class="btn text-white button2 btn-block">Пополнить счет</a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="~/Portfolio"><h4>Портфель</h4></a>
+                        </div>
+                        <hr>
+                        <div class="col-12 text-center">
+                            <a href="~/Share/Catalog"><h4>Каталог</h4></a>
+                        </div>
+                        <hr>
+                        <div class="col-12 text-center">
+                            <a href="~/Analytics/Analytics"><h4>Аналитика</h4></a>
+                        </div>
+                        <hr>
+                        <div class="col-12 text-center">
+                            <a href="~/Transaction"><h4>Операции</h4></a>
+                        </div>
+                        <hr>
+                        <div class="col-12 text-center">
+                            <a href="~/Setting/Update"><h4>Настройки</h4></a>
+                        </div>
+                        <hr>
+                        <div class="col-12 text-center" style="margin-top: 200px;">
+                            <a asp-controller="User" asp-action="Logoff" class="btn btn-danger text-white">Выйти</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--2 колонка-->
+            <div class="container-fluid col-md-9 noppading">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="form-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loaderbody" id="loaderbody">
+        <div class="loader"></div>
+    </div>
+
+    <footer>
+        <div class="container-fluid" style="background-color: black">
+            </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/notify.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+<script>
+    $('#foo').off();
+    document.getElementById("foo").onchange = function () {
+        if (this.selectedIndex !== 0) {
+            if (this.value != 0) {
+                window.location.href = this.value;
+            }
+            else {
+                showInPopup('@Url.Action("Create", "Setting", null, Context.Request.Scheme)', 'Добавить портфель');
+            }
+        }
+    };
+</script>
+</body>
+</html>

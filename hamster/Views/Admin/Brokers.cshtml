@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Broker>
+@{
+    ViewData["Title"] = "Брокеры";
+    Layout = "_adminLayout";
+}
+<h1>Брокеры</h1>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-12 text-right">
+            <a asp-controller="Admin" asp-action="CurrencyCreate" class="btn btn-primary">Добавить брокера</a>
+        </div>
+    </div>
+    <br />
+    @if(Model.Count() > 0)
+    {
+
+
+<table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Брокер
+                    </th>
+                    <th>
+                        Идентификатор
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var broker in Model)
+                {
+                     <tr class="text-center">
+                        <td width="20%">@broker.BrokerName</td>
+                        <td width="20%">@broker.BrokerId</td>
+                        <td>
+                            <div class="btn-group w-100" role="group">
+                                <a asp-controller="Share" asp-action="Buy" asp-route-id="@broker.BrokerId" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Share" asp-action="Withdraw" asp-route-id="@broker.BrokerId" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                     </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div> 

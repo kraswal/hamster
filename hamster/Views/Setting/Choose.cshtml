@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Portfolio>
+@{
+    ViewData["Title"] = "Выбрать портфель";
+}
+<style>
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        /* needed for Firefox: */
+        overflow: hidden;
+        width: 100%;
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">hamster</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Portfolio" asp-action="Portfolio">Портфель</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ShareAccount" asp-action="Index">Мои акции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Transaction" asp-action="Index">Мои операции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="CurrencyAccount" asp-action="Index">Мои валюты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Share" asp-action="Catalog">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Setting" asp-action="Portfolios">Настройки</a>
+                    </li>
+                    <li class="nav-item">
+                        <select id="foo" class="nav-link text-dark">
+                            <option disabled selected>Другие портфели</option>
+                            @foreach (var portfolio in Model)
+                            {
+                                <option value="Portfolio/@portfolio.PortfolioId">@portfolio.PortfolioName</option>
+                            }
+                        </select>
+                    </li>
+                    <li class="nav-item text-dark">
+                        <a class="nav-link text-dark text-right" asp-area="" asp-controller="User" asp-action="Logoff">Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<script>
+    document.getElementById("foo").onchange = function() {
+        if (this.selectedIndex!==0) {
+            window.location.href = this.value;
+        }
+    };
+</script>

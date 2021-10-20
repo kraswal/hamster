@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Currency>
+@{
+    ViewData["Title"] = "Валюты";
+    Layout = "_adminLayout";
+}
+<h1>Валюты</h1>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-12 text-right">
+            <a asp-controller="Admin" asp-action="CurrencyCreate" class="btn btn-primary">Добавить валютy</a>
+        </div>
+    </div>
+    <br />
+    @if(Model.Count() > 0)
+    {
+
+
+<table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        Название валюты
+                    </th>
+                    <th>
+                        Знак валюты
+                    </th>
+                    <th>
+                        Страна
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var currency in Model)
+                {
+                     <tr>
+                        <td width="30%">@currency.CurrencyName</td>
+                        <td width="30%">@currency.CurrencySign</td>
+                        <td width="30%">@currency.CurrencyCountry</td>
+                     </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div> 
