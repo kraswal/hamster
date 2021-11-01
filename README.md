@@ -2,8 +2,8 @@
 Дипломная работа "Веб-приложение для учета и контроля инвестиционных портфелей"
 Писал все сам - БД, бек, фронт
 Технологии:
-- ASP.NET MVC 5, C#, SQL
-- EF, Microsoft Identity
+- ASP.NET MVC 5, C#, SQL (MS SQL Server)
+- EF, Microsoft Identity, LINQ
 - Google Developers, json
 - HTML, CSS, JS, jQuery AJAX (немного)
 
