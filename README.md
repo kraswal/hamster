@@ -5,7 +5,7 @@
 - ASP.NET MVC 5, C#, SQL (MS SQL Server)
 - EF, Microsoft Identity, LINQ
 - Google Developers, json
-- HTML, CSS, JS, jQuery AJAX (немного)
+- HTML, CSS, JS, jQuery AJAX
 
 Работа приложения:
 Считывает котировки финансовых активов ->  позволяет вести свои портфели с различным набором акций, смотреть динамику, результаты и т.д.
